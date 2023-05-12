@@ -4,7 +4,7 @@ import picar_4wd as fc
 import cv2
 import time
 
-host_ip = '192.168.178.26'
+host_ip = 'xxxx'
 port = 6666
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 # Connect to the PC

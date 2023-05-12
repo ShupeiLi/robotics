@@ -2,7 +2,7 @@ import cv2
 from cvzone.HandTrackingModule import HandDetector
 import socket
 
-host = "192.168.178.26"
+host = "xxxx"
 port = 6666
 mySocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 mySocket.bind((host, port))
