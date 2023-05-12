@@ -44,8 +44,6 @@ while True:
             print('go straight')
             client.send("3".encode("utf-8"))
 
-    if len(lmlist)!=2:
-        continue
 
 cv2.destroyAllWindows()
 cap.release()
