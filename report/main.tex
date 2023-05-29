@@ -158,6 +158,24 @@
 \section{Introduction}
 
 \section{Gesture control}
+During the gesture control stage, the driver sits before the computer, observes the road condition through the video stream sent from the car, and controls the movement of the car via gestures. The key part of gesture control is correctly identifying gestures in a short time. Our solution is using the CVZone package's implementation of the MediaPipe Hands model \cite{cvzone}.
+
+The MediaPipe Hands model is a pipeline designed for detecting landmarks of hands in images or videos. It is composed of two stages. The first stage is marking a square area where palms are present with a single-shot palm detector. And the second stage is recognizing the handedness and the landmarks of hands with an encoder-decoder-based tracker. Note that the handedness is a flag indicating whether the detected hand is left or right. The landmarks of hands provide critical information for restoring gestures. The MediaPipe Hands model adopts the topology suggested by \cite{hand} and returns the 21 landmarks, which is shown in Figure \ref{fig:hand}. The basic building block of the detector and the tracker is the convolutional neural network. The MediaPipe Hands model has been pre-trained on three large gesture datasets and added as a module in the MediaPipe framework.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=11cm]{./hand.png}
+    \caption{The topology of the hand \cite{google}.}
+    \label{fig:hand}
+\end{figure}
+
+The control logic of our algorithm mainly utilizes the number and the relative height of hands. CVZone provides APIs that can return a list of detected hands and extract the center coordinates of hands from 21 landmarks. The gesture control program will only be activated if two hands are appearing before the computer camera, which simulates the scenario of driving a real car by steering the wheel. Our program supports three commands: turn left, turn right, and go straight. We use the relative height of two hands to determine the intent of the driver. Denote the $y$ coordinate of the center of the left hand as $y_{\text{left}}$ and that of the right hand as $y_{\text{right}}$. Given a threshold $\eta$, we regard the driver wants to turn left if $y_{\text{right}} > y_{\text{left}} + \eta$ or turn right if $y_{\text{left}} > y_{\text{right}} + \eta$. In other cases, we regard the driver wants to go straight. We set the $\eta$ to 200 according to testing results. If the driver wants to stop or switch to the autonomous driving mode, he or she just needs to move hands outside the view of the camera to deactivate the gesture control program. Figure \ref{fig:gesture-control} illustrates the effect of the gesture control program in action. Monitor screens of the computer camera and the car's camera are shown on the left side of the screenshot. The right side of the screenshot is the car going straight.
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=13cm]{./gesture-control.png}
+    \caption{Gesture control in action.}
+    \label{fig:gesture-control}
+\end{figure}
 
 \section{Autonomous driving}
 
