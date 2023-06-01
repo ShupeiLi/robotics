@@ -137,7 +137,7 @@
 %% The abstract is a short summary of the work to be presented in the
 %% article.
 \begin{abstract}
-    \textbf{Abstract}. TBC.
+    \textbf{Abstract}. Traffic accidents are a severe problem all over the world. Given this situation, we design an autonomous driving copilot consisting of gesture control and autonomous driving system. In this paper, we explain the methodology we apply to these two systems and show the demo process. At the end of the paper, we discuss the achievements of our project and proposed possible improvements in future work.
 \end{abstract}
 
 %%
@@ -148,7 +148,7 @@
 %%
 %% Keywords. The author(s) should pick words that accurately describe
 %% the work being presented. Separate the keywords with commas.
-\keywords{keywords}
+\keywords{Autonomous driving; Gesture control; Opencv }
 
 %%
 %% This command processes the author and affiliation and title
@@ -156,9 +156,12 @@
 \maketitle
 
 \section{Introduction}
+Approximately 1.3 million people die each year in traffic accidents~\cite{who-road-traffic-injuries}. Autonomous driving holds great potential to mitigate this issue by automatically detecting obstacles, planning routes intelligently, and driving with greater discipline. In order to assist real-world driving, we have developed a gesture control system that simulates the driving process, allowing drivers to learn and become familiar with various driving scenarios. Additionally, to address the common challenge of parking difficulties, we have designed an autonomous parking system. This system aims to provide a solution for individuals who struggle with parking their cars.
+
+This paper is divided into two main parts: gesture control and autonomous parking. In the gesture control section, we provide a detailed explanation of the mechanism used to recognize gestures captured by the computer camera. We discuss the process of generating and transmitting commands, as well as executing these commands on the car. In the autonomous parking section, we outline the methodology employed for object detection and route planning. To showcase the outcomes of our project, we include demo screenshots that effectively demonstrate the results achieved.
 
 \section{Gesture control}
-During the gesture control stage, the driver sits in front of the computer, obeserves the road condition through the video stream sent from the raspberry pi mobile car, and controls the movement of the car via gestures. The key part of gesture control is correctly identifying gestures in a short time. Our solution is using the CVZone package's implementation of the MediaPipe Hands model \cite{cvzone}.
+During the gesture control stage, the driver sits in front of the computer, observes the road condition through the video stream sent from the raspberry pi mobile car, and controls the movement of the car via gestures. The key part of gesture control is correctly identifying gestures in a short time. Our solution is using the CVZone package's implementation of the MediaPipe Hands model \cite{cvzone}.
 
 The MediaPipe Hands model is a pipeline designed for detecting landmarks of hands in images or videos. It is composed of two stages. The first stage is marking a square area where palms are present with a single-shot palm detector. And the second stage is recognizing the handedness and the landmarks of hands with an encoder-decoder-based tracker. Note that the handedness is a flag indicating whether the detected hand is left or right. The landmarks of hands provide critical information for restoring gestures. The MediaPipe Hands model adopts the topology suggested by \cite{hand} and returns the 21 landmarks, which are shown in Figure \ref{fig:hand}. The basic building block of the detector and the tracker is the convolutional neural network. The MediaPipe Hands model has been pre-trained on three large gesture datasets and added as a module in the MediaPipe framework.
 
