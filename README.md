@@ -22,3 +22,21 @@ Robotics, 2023 Spring, Leiden University
 5. Use gestures to control the car.
 
 ### Autonomous driving
+#### Hardware enviornment
+- Picar-4wd + RPi Camera v2
+- Marking lines (colored tapes)
+
+#### Software environment
+- picamera
+- opencv-python
+- Time
+- Picar_4wd
+
+
+#### Usage
+1. Run `linetrack.py` on the computer.
+2. Specify the parameters asked by the program, namely color, task index and threshold, with the following setting.
+3. Set `color == orange` or `color == red_2`
+4. Set `Task index == 4`
+5. Set `Threshold == 30`
+6. The above default settings will execute the auto reverse parking of the robot.
