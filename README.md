@@ -36,7 +36,7 @@ Robotics, 2023 Spring, Leiden University
 #### Usage
 1. Run `python linetrack.py` on the computer.
 2. Specify the parameters asked by the program, namely color, task index and threshold, with the following setting.
-3. Set `color == orange` or `color == red_2`
+3. Set `color == orange` or `color == red_2` (orange is recommended.)
 4. Set `Task index == 4`
-5. Set `Threshold == 30`
+5. Set `Threshold == 10`
 6. The above default settings will execute the auto reverse parking of the robot.
